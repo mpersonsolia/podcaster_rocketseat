@@ -1,3 +1,6 @@
+/*
+ */
+
 import { createContext, useState, ReactNode, useContext } from 'react';
 
 type Episode = {
@@ -50,7 +53,6 @@ export function PlayerContextProvider( { children } : PlayerContextProviderProps
         setEpisodeList(list);
         setCurrentEpisodeIndex(index);
         setIsPlaying(true);
-
     }
 
     function togglePlay() {
@@ -75,7 +77,7 @@ export function PlayerContextProvider( { children } : PlayerContextProviderProps
         if (isShuffling){
             const nextRandomEpisodeIndex = Math.floor(Math.random() *episodeList.length)
             setCurrentEpisodeIndex(nextRandomEpisodeIndex);
-        }else if (hasNext){
+        } else if (hasNext){
             setCurrentEpisodeIndex(currentEpisodeIndex + 1 )}         
     }
 

@@ -119,7 +119,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
   )
 }
 
-export   const getStaticProps: GetStaticProps = async () => {  
+export const getStaticProps: GetStaticProps = async () => {  
   const { data } = await  api.get('episodes', {
     params: {
       _limit:12,
@@ -140,7 +140,6 @@ export   const getStaticProps: GetStaticProps = async () => {
       url: episode.file.url,
     }
   })
-
 
   const latestEpisodes = episodes.slice(0,2);
   const allEpisodes = episodes.slice (2, episodes.length)

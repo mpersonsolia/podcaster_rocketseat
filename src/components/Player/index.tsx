@@ -11,7 +11,6 @@ export  function Player(){
     const audioRef = useRef<HTMLAudioElement>(null);
     const [progress, setProgress] = useState(0);
 
-
     const {episodeList, currentEpisodeIndex, isPlaying, togglePlay, setPlayingState, playNext, playPrevious, hasNext,hasPrevious, isLooping, toggleLoop,toggleShuffle, isShuffling, clearPlayerState } = usePlayer();
     useEffect(() => {
         if(!audioRef.current){
