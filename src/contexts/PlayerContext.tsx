@@ -1,6 +1,3 @@
-/*
- */
-
 import { createContext, useState, ReactNode, useContext } from 'react';
 
 type Episode = {
@@ -29,6 +26,10 @@ type PlayerContext = {
     hasPrevious: boolean;
     clearPlayerState: () => void
 };
+
+/* passa-se um objeto vazio para o createContext com o objetivo de aplicar a ele a mesma tipagem dada ao 
+   PlayerContext acima, para facilitar a manipulação dos dados.
+ */
 
 export const PlayerContext = createContext({} as PlayerContext);
 
