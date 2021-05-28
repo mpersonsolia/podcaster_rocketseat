@@ -1,17 +1,15 @@
 import { GetStaticProps } from 'next';
-import Image from 'next/image'
-import Head from 'next/head'
-import { api } from '../services/api'
-import { format, parseISO} from 'date-fns'
+import Image from 'next/image';
+import Head from 'next/head';
+import { api } from '../services/api';
+import { format, parseISO} from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
-import styles from './home.module.scss'
-import Link from 'next/link'
+import styles from './home.module.scss';
+import Link from 'next/link';
 import { usePlayer } from '../contexts/PlayerContext';
 
-
-type Episodes = {
-  
+type Episodes = {  
     id: string;
     title: string;
     thumbnail: string;
@@ -20,14 +18,12 @@ type Episodes = {
     durationAsString: string;
     url: string;
     publishedAt: string;
-
 }
 
 type HomeProps = {
   latestEpisodes: Episodes[],
   allEpisodes: Episodes[]    
 }
-
 
 export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
   const { playList } = usePlayer()
@@ -38,6 +34,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
       <Head>
         <title>Home | Podcastr</title>
       </Head>
+
       <section className={styles.latestEpisodes}>
         <h2>
           Últimos lançamentos
@@ -122,8 +119,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
   )
 }
 
-export   const getStaticProps: GetStaticProps = async () => {
-  
+export   const getStaticProps: GetStaticProps = async () => {  
   const { data } = await  api.get('episodes', {
     params: {
       _limit:12,
@@ -153,7 +149,6 @@ export   const getStaticProps: GetStaticProps = async () => {
      props: {
       latestEpisodes,
       allEpisodes,
-
      },
      revalidate: 60 * 60 * 8
    }

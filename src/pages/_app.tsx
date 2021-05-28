@@ -6,7 +6,6 @@ import { Player } from "../components/Player"
 import React, { useState } from "react"
 import { PlayerContext, PlayerContextProvider } from "../contexts/PlayerContext"
 
-
 function MyApp({ Component, pageProps }) {
 return (
   <PlayerContextProvider>

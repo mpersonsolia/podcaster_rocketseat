@@ -13,9 +13,7 @@ import styles from './episode.module.scss'
 
 import { PlayerContext, usePlayer } from '../../contexts/PlayerContext';
 
-
-type Episode = {
-  
+type Episode = {  
     id: string;
     title: string;
     thumbnail: string;
@@ -25,19 +23,14 @@ type Episode = {
     url: string;
     publishedAt: string;
     description: string;
-
 }
 
 type EpisodeProps = {
     episode: Episode
 };
 
-
-
 export default function Episode({episode}: EpisodeProps){
-
-    const { play  } = usePlayer()
-  
+    const { play  } = usePlayer()  
     
     return(
         <div className={styles.episode}>
@@ -49,12 +42,14 @@ export default function Episode({episode}: EpisodeProps){
                 <button type="button">
                     <img src="/arrow-left.svg" alt="Voltar"/>
                 </button>
+
                 </Link>
                 <Image 
                 width={700}
                 height={160}
                 src={episode.thumbnail}
                 objectFit="cover"/>
+
                 <button type="button" onClick={() => play(episode)}>
                     <img src="/play.svg" alt="Tocar episódio"/>
                 </button>
@@ -69,17 +64,12 @@ export default function Episode({episode}: EpisodeProps){
             <div 
             className={styles.description}
             dangerouslySetInnerHTML={{__html:episode.description}}
-            />
-               
-            
-        </div>
-
-        
+            />              
+        </div>        
     )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-
     const { data } = await api.get('episodes', {
         params: {
             _limit:2,
@@ -105,8 +95,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     const { slug } = ctx.params;
     const { data } = await api.get(`/episodes/${slug}`)
     
-    const episode =  {
-        
+    const episode =  {        
           id: data.id,
           title: data.title,
           thumbnail: data.thumbnail,
@@ -115,8 +104,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
           duration:Number(data.file.duration),
           durationAsString: convertDurationToTimeString(Number(data.file.duration)),
           description: data.description,
-          url: data.file.url,
-        
+          url: data.file.url,        
       }
 
     return {
