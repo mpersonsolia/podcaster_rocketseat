@@ -1,13 +1,15 @@
-import { GetStaticProps } from 'next';
-import Image from 'next/image';
-import Head from 'next/head';
-import { api } from '../services/api';
-import { format, parseISO} from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+import { GetStaticProps } from 'next'; //indica os dados estáticos
+import Image from 'next/image'; //permite adicionar propriedades em imagens salvas fora do projeto
+import Head from 'next/head'; //link para a tag head de outro arquivo
+import { api } from '../services/api'; // impede que a API seja indexada nos buscadores
+import { format, parseISO} from 'date-fns'; // extensão para datas
+import ptBR from 'date-fns/locale/pt-BR'; // extensão para datas com localidade
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 import styles from './home.module.scss';
-import Link from 'next/link';
+import Link from 'next/link'; // permite que o link seja encaminhado para outro arquivo do próprio projeto
 import { usePlayer } from '../contexts/PlayerContext';
+
+// tipagem feita com o TypeScript
 
 type Episodes = {  
     id: string;
@@ -30,19 +32,20 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
   const episodeList = [...latestEpisodes, ...allEpisodes]  
   
   return (
-    <div className={styles.homepage}>
+    <div className={styles.homepage}> {/*estilização da homepage*/}
       <Head>
         <title>Home | Podcastr</title>
       </Head>
 
-      <section className={styles.latestEpisodes}>
+      <section className={styles.latestEpisodes}> {/*estilização dos dois últimos episódios lançados*/}
         <h2>
           Últimos lançamentos
         </h2>
         <ul>
+          
           {latestEpisodes.map((episode, index) => {
             return (
-              <li key={episode.id}>
+              <li key={episode.id}> {/*key: utiliza informação singular da propriedade para evitar tags duplicadas*/} 
                 <Image 
                 width ={192} 
                 height={192} 
@@ -51,7 +54,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
                 objectFit="cover"
                 />
 
-                <div className={styles.episodeDetails}>
+                <div className={styles.episodeDetails}> {/*estilização dos detalhes do episódio*/} 
                   <Link href={`/episode/${episode.id}`}>
                     <a>{episode.title}</a>
                   </Link>
@@ -141,14 +144,14 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   })
 
-  const latestEpisodes = episodes.slice(0,2);
-  const allEpisodes = episodes.slice (2, episodes.length)
+  const latestEpisodes = episodes.slice(0,2); /*apresentação apenas dos dois últimos episódios lançados*/
+  const allEpisodes = episodes.slice (2, episodes.length) /*apresentação de todos os episódios, as partir do segundo*/ 
   
    return {
      props: {
       latestEpisodes,
       allEpisodes,
      },
-     revalidate: 60 * 60 * 8
+     revalidate: 60 * 60 * 8 /*revalidate: propriedade do GetStaticProps - tempo em que a página estática será atualizada*/
    }
   }
