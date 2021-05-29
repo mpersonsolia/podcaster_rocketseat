@@ -1,17 +1,34 @@
+/* disabled: propriedade que permite com que o botão do display deixe de funcionar caso não esteja tocando
+ * nenhum podcast.
+ */
+
 import Image from 'next/image'; // extensão para modificar as propriedades da imagem
 import { useRef, useEffect, useState } from 'react';
 import { usePlayer } from '../../contexts/PlayerContext';
 
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css'
-import styles from './styles.module.scss'
+import Slider from 'rc-slider'; //extensão para o slider (barra de tempo)
+import 'rc-slider/assets/index.css'; 
+import styles from './styles.module.scss';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 
 export  function Player(){
     const audioRef = useRef<HTMLAudioElement>(null);
     const [progress, setProgress] = useState(0);
 
-    const {episodeList, currentEpisodeIndex, isPlaying, togglePlay, setPlayingState, playNext, playPrevious, hasNext,hasPrevious, isLooping, toggleLoop,toggleShuffle, isShuffling, clearPlayerState } = usePlayer();
+    const {episodeList, 
+        currentEpisodeIndex, 
+        isPlaying, togglePlay, 
+        setPlayingState, 
+        playNext, 
+        playPrevious, 
+        hasNext,
+        hasPrevious, 
+        isLooping, 
+        toggleLoop,
+        toggleShuffle, 
+        isShuffling, 
+        clearPlayerState } = usePlayer();
+        
     useEffect(() => {
         if(!audioRef.current){
             return;
@@ -52,6 +69,7 @@ export  function Player(){
                 <img src = "/playing.svg" alt = "Tocando agora"/>
                 <strong>Tocando agora {episode?.title}</strong>
             </header>
+
             {episode ? (
                 <div className = {styles.currentEpisode}>
                   <Image 
@@ -59,17 +77,13 @@ export  function Player(){
                   height = {592} 
                   src = {episode.thumbnail} 
                   objectFit = "cover"/>
-                  <strong>
-                    {episode.title}                      
-                  </strong>
-                  <strong>
-                    {episode.members}                      
-                  </strong>
+                  <strong>{episode.title}</strong>
+                  <strong>{episode.members}</strong>
                    </div> 
             ): (<div className = {styles.emptyPlayer}>
-                <strong>Selecione um podcast para ouvir </strong>
-            </div>
-            )}
+                    <strong>Selecione um podcast para ouvir! </strong>
+                </div>
+                )}
             
             <footer className = {!episode ? styles.empty : ''}>
                 <div className = {styles.progress}>
@@ -80,34 +94,34 @@ export  function Player(){
                         max = {episode.duration}
                         value = {progress} 
                         onChange = {handleSeek}
-                        trackStyle = {{ backgroundColor:'#04d361'}}
-                        railStyle = {{backgroundColor: '#9f75ff'}} 
-                        handleStyle = {{borderColor: '#04d361'}} />
+                        trackStyle = {{ backgroundColor:'#04D361'}}
+                        railStyle = {{backgroundColor: '#9F75FF'}} 
+                        handleStyle = {{borderColor: '#04D361'}} />
                     ) : (
                         <div className = {styles.emptySlider}/>
                     )}
                     </div>
                     <span>{convertDurationToTimeString(episode?.duration ?? 0)}</span>
                 </div>
- {
-     episode && (
-         <audio
-         src = {episode.url}
-         ref = {audioRef}
-         onEnded = {handleEpisodeEnded}
-         autoPlay
-         loop = {isLooping}
-         onPlay = {() => setPlayingState(true)}
-         onPause = {() => setPlayingState(false)}
-         onLoadedData = {setupProgressListener}
-         />         
-     ) 
- }
+ 
+                { episode && (
+                    <audio
+                    src = {episode.url}
+                    ref = {audioRef}
+                    onEnded = {handleEpisodeEnded}
+                    autoPlay
+                    loop = {isLooping}
+                    onPlay = {() => setPlayingState(true)}
+                    onPause = {() => setPlayingState(false)}
+                    onLoadedData = {setupProgressListener}
+                    />         
+                ) 
+                }
 
-                <div className = {styles.buttons}>
+                 <div className = {styles.buttons}>
                     <button type = "button" disabled = {!episode || episodeList.length === 1}
                     onClick = {toggleShuffle} className = {isShuffling ? styles.isActive : ''}>
-                        <img src = "/shuffle.svg" alt="Embaralhar"/>
+                        <img src = "/shuffle.svg" alt = "Embaralhar"/>
                     </button>
 
                     <button type = "button" onClick = {playPrevious} disabled = {!episode || !hasPrevious}>
