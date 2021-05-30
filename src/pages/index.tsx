@@ -1,16 +1,16 @@
-import { GetStaticProps } from 'next'; //indica os dados estáticos
-import Image from 'next/image'; //permite adicionar propriedades em imagens salvas fora do projeto
-import Head from 'next/head'; //link para a tag head de outro arquivo
-import { api } from '../services/api'; // impede que a API seja indexada nos buscadores
+import { GetStaticProps } from 'next'; // indica os dados estáticos
+import Image from 'next/image'; // permite adicionar propriedades em imagens salvas fora do projeto
+import Head from 'next/head'; // link para a tag head de outro arquivo
 import { format, parseISO} from 'date-fns'; // extensão para datas
 import ptBR from 'date-fns/locale/pt-BR'; // extensão para datas com localidade
-import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
-import styles from './home.module.scss';
 import Link from 'next/link'; // permite que o link seja encaminhado para outro arquivo do próprio projeto
-import { usePlayer } from '../contexts/PlayerContext';
+
+import { api } from '../services/api'; // impede que a API seja indexada nos buscadores
+import { convertDurationToTimeString } from '../utils/convertDurationToTimeString'; //importação de função de outro arquivo do projeto
+import styles from './home.module.scss'; // estilização
+import { usePlayer } from '../contexts/PlayerContext'; // importação de função de outro arquivo do projeto
 
 // tipagem feita com o TypeScript
-
 type Episodes = {  
     id: string;
     title: string;
@@ -22,6 +22,7 @@ type Episodes = {
     publishedAt: string;
 }
 
+// tipagem feita com o TypeScript
 type HomeProps = {
   latestEpisodes: Episodes[],
   allEpisodes: Episodes[]    
@@ -32,30 +33,28 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
   const episodeList = [...latestEpisodes, ...allEpisodes]  
   
   return (
-    <div className={styles.homepage}> {/*estilização da homepage*/}
+    <div className={styles.homepage}> {/*estilização da barra*/}
       <Head>
         <title>Home | Podcastr</title>
       </Head>
 
-      <section className={styles.latestEpisodes}> {/*estilização dos dois últimos episódios lançados*/}
-        <h2>
-          Últimos lançamentos
-        </h2>
+      <section className={styles.latestEpisodes}> {/*estilização dos ''últimos episódios'*/}
+        <h2> Últimos Lançamentos</h2>
         <ul>
           
-          {latestEpisodes.map((episode, index) => {
+          {latestEpisodes.map((episode, index) => { {/*map: permite percorrer os parâmetros adicionados na tipagem indicada'*/}
             return (
-              <li key={episode.id}> {/*key: utiliza informação singular da propriedade para evitar tags duplicadas*/} 
+              <li key = {episode.id}> {/*key: utiliza informação singular da propriedade para evitar tags duplicadas*/} 
                 <Image 
-                width ={192} 
-                height={192} 
-                src={episode.thumbnail} 
-                alt={episode.title}
-                objectFit="cover"
+                width = {192} 
+                height = {192} 
+                src = {episode.thumbnail} 
+                alt = {episode.title}
+                objectFit = "cover"
                 />
 
-                <div className={styles.episodeDetails}> {/*estilização dos detalhes do episódio*/} 
-                  <Link href={`/episode/${episode.id}`}>
+                <div className = {styles.episodeDetails}> {/*estilização dos detalhes do episódio*/} 
+                  <Link href = {`/episode/${episode.id}`}> 
                     <a>{episode.title}</a>
                   </Link>
                   <p>{episode.members}</p>
@@ -64,7 +63,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
                 </div>
 
                 <button type="button" onClick={ () => playList(episodeList, index)}>
-                  <img src="/play-green.svg" alt="Tocar episódio"/>
+                  <img src="/play-green.svg" alt="Tocar episódio"/> {/*botão play de 'últimos lançamnentos'*/}
                 </button>
               </li>
             )
@@ -72,9 +71,9 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
         </ul>
 
       </section>
-      <section className={styles.allEpisodes}>
-        <h2>Todos Episódios</h2>
-        <table cellSpacing={0}>
+      <section className = {styles.allEpisodes}> {/*estilização de 'todos os episódios'*/} 
+        <h2>Todos os Episódios</h2>
+        <table cellSpacing = {0}> {/*cellSpacing: adiciona, em pixels, o distanciamento entre as células da tabela*/} 
           <thead>
             <tr>
             <th></th>
@@ -88,28 +87,28 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
           <tbody>
             {allEpisodes.map((episode, index) => {
               return (
-                <tr key={episode.id}>
-                  <td style={{width: 100}}>
+                <tr key = {episode.id}>
+                  <td style = {{width: 100}}>
                     <Image
-                    width={120}
-                    height={120}
-                    src={episode.thumbnail}
-                    alt={episode.title}
-                    objectFit="cover"
+                    width = {120}
+                    height = {120}
+                    src = {episode.thumbnail}
+                    alt = {episode.title}
+                    objectFit = "cover"
                     />
                   </td>
 
                   <td>
-                    <Link href={`/episode/${episode.id}`}>
+                    <Link href = {`/episode/${episode.id}`}>
                     <a >{episode.title}</a>
                     </Link>
                   </td>
                   <td>{episode.members}</td>
-                  <td style={{width: 100}}>{episode.publishedAt}</td>
-                  <td>{episode.durationAsString}</td>
+                  <td style = {{width: 100}}>{episode.publishedAt}</td> {/*imagem de 'todos os episódios'*/} 
+                  <td>{episode.durationAsString}</td> {/*duração de 'todos os episódios'*/} 
                   <td>
-                    <button type="button" onClick={() => playList(episodeList, index + latestEpisodes.length)}>
-                      <img src="/play-green.svg" alt="Tocar Episódio" />
+                    <button type = "button" onClick = {() => playList(episodeList, index + latestEpisodes.length)}>
+                      <img src = "/play-green.svg" alt="Tocar Episódio" /> {/*botão de 'todos os episódios'*/} 
                     </button>
                   </td>
                 </tr>
@@ -122,12 +121,13 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
   )
 }
 
+// GetStaticProps: produz os dados da API durante a produção, de forma a permitir observar como o projeto atua fora do localhost
 export const getStaticProps: GetStaticProps = async () => {  
-  const { data } = await  api.get('episodes', {
-    params: {
-      _limit:12,
-      _sort: 'published_at',
-      _order: 'desc'
+  const { data } = await api.get('episodes', {
+    params: { /*params: indica os parametros que devem ser aplicados nas paginas dinamicas*/
+      _limit: 12, // limite de doze podcasts na pagina.
+      _sort: 'published_at', // apresentado por ordem de publicacao
+      _order: 'desc' // de forma decrescente
     }
   })
 
@@ -137,21 +137,21 @@ export const getStaticProps: GetStaticProps = async () => {
       title: episode.title,
       thumbnail: episode.thumbnail,
       members: episode.members,
-      publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { locale: ptBR }),
+      publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { locale: ptBR }), // extensao do date-fns
       duration:Number(episode.file.duration),
       durationAsString: convertDurationToTimeString(Number(episode.file.duration)),
       url: episode.file.url,
     }
   })
 
-  const latestEpisodes = episodes.slice(0,2); /*apresentação apenas dos dois últimos episódios lançados*/
-  const allEpisodes = episodes.slice (2, episodes.length) /*apresentação de todos os episódios, as partir do segundo*/ 
+  const latestEpisodes = episodes.slice(0,2); // apresentação apenas dos dois últimos episódios lançados
+  const allEpisodes = episodes.slice (2, episodes.length) // apresentação de todos os episódios, a partir do segundo
   
    return {
-     props: {
+     props: { // props: objetos opcionais
       latestEpisodes,
       allEpisodes,
      },
-     revalidate: 60 * 60 * 8 /*revalidate: propriedade do GetStaticProps - tempo em que a página estática será atualizada*/
+     revalidate: 60 * 60 * 8 // revalidate: propriedade do GetStaticProps - tempo em que a página estática será atualizada
    }
   }
