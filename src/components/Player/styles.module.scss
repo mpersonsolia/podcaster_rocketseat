@@ -1,32 +1,33 @@
-.playerContainer {
-    padding: 3rem 4rem;
-    width: 26.5rem;
-    height: 100vh;
+.playerContainer { // estilizaçao da sidebar
+    padding: 3rem 4rem; // distancia entre o conteudo dos elementos e suas bordas
+    width: 26.5rem; // largura
+    height: 100vh; //altura
 
-    background: var(--purple-500);
-    color: var(--white);
+    background: rgba(130, 87, 229);
+    color: rgba(255, 255, 255);
  
+    // alinhamento
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-between;
 
     header {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 1rem; // espaço entre a imagem do headphone e o 'Tocando Agora'
     }
 
     strong {
-        font-family: Lexend, sans-serif;;
-        font-weight: 600;
+        font-family: Lexend, sans-serif; // fonte
+        font-weight: 600; // tamanho da fonte
     }
 
-    footer{
-        align-self: stretch;
-        &.empty .progress {
+    footer {
+        align-self: stretch; // formato alongado da barra de progresso
+        &.empty.progress {
            opacity: 0.5; 
-        }
+        } // opacidade da barra de progresso
     }
 }
 
@@ -36,7 +37,7 @@
         border-radius: 1.5rem;
     }
 
-    strong{
+    strong {
         display: block;
         margin-top: 2rem;
         font: 600 1.25rem Lexend, sans-serif;
@@ -52,27 +53,28 @@
 }
 
 .emptyPlayer {
-    width: 100%;
-    height: 20rem;
-    border: 1.5px dashed var(--purple-300);
+    width: 100%; // largura
+    height: 20rem; // altura
+    border: 1.5px dashed rgba(144, 102, 242); // borda pontilhada
     border-radius: 1.5rem;
-    background: linear-gradients(143.8deg, rgba(145,100,250,0.8)0%, rgba(0,0,0,0)100%);
+    background: linear-gradients(143.8deg, rgba(130, 87, 229)0%, rgba(0,0,0,0)100%);
 
-    padding: 4rem;
+    padding: 4rem; // distancia entre o elemento e as bordas
     text-align: center;
 
+    // alinhamento
     display: flex;
     align-items: center;
     justify-content:center;
 }
 
-.progress {
+.progress { // estilizaçao da barra de progresso
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.875rem;
 
-    span{
+    span {
         display: inline-block;
         width: 4rem;
         text-align: center;
@@ -81,16 +83,16 @@
     .slider{
         flex: 1;
 
-        .emptySlider{
+        .emptySlider{ // estilizaçao da barra de progresso vazia
             width:100%;
             height: 4px;
-            background: var(--purple-300);
+            background: rgba(144, 102, 242);
             border-radius: 2px;
         }
     }     
 }
 
-.buttons {
+.buttons { // estilizaçao dos botoes
     display: flex;
     align-self: center;
     justify-content:center;
@@ -102,7 +104,7 @@
         border: 0;
         font-size: 0;
 
-        transition: filter 0.2s;
+        transition: filter 0.2s; // mudança de cor do botao ao descansar o mouse em cima
 
         &:disabled {
             cursor: default;
@@ -125,7 +127,7 @@
             width: 4rem;
             height: 4rem;
             border-radius: 1rem;
-            background: var(--purple-400);
+            background: rgba(137, 93, 239);
 
             transition: filter 0.2s;
 
@@ -134,5 +136,4 @@
             }    
         }
     }
-
 }

@@ -1,22 +1,26 @@
 .headerContainer {
-    background: var(--white);
-    height:6.5rem; // 1rem equivale a 16px
+    background: rgba(255, 255, 255); // cor de fundo do cabeçalho
+    height: 6.5rem; // altura do cabeçalho - 1rem = 16px
 
+    // alinhamento
     display: flex;
     align-items: center;
 
+    // distancia entre o conteúdo dos elementos e suas bordas
     padding: 2rem 4rem;
 
-    border-bottom: 1px solid var(--gray-100); 
+    border-bottom: 1px solid rgba(145,100,250,0.8); // linha entre o cabeçalho e o corpo
 
-    p{
+    // parágrafo
+    p {
         margin-left: 2rem;
         padding: 0.25rem 0 0.25rem 2rem;
-        border-left: 1px solid var(--gray-100)
+        border-left: 1px solid;
     }
 
+    // espaçamento entre a frase e a data
     span {
-        margin-left:auto;
-        text-transform:capitalize
+        margin-left: auto;
+        text-transform: capitalize;
     }
 }

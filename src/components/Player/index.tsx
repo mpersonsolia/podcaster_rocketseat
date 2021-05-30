@@ -113,7 +113,7 @@ export function Player(){
                     onPause = {() => setPlayingState(false)}
                     onLoadedData = {setupProgressListener}
                     />         
-                ) 
+                    ) 
                 }
 
                  <div className = {styles.buttons}> {/*botoes da sidebar - pagina inicial*/}

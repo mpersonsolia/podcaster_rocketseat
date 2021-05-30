@@ -3,11 +3,11 @@ import ptBR from 'date-fns/locale/pt-BR' // extensão para data com localidade
 
 import styles from  "./styles.module.scss"; // estilizacao
 
-// Header: adiciona a data atual.
+// Header: tag que cuida do cabecalho
 export function Header(){
     const currentDate = format(new Date(), 'EEEE, d MMMM',{
         locale: ptBR,
-    })
+    }) // permite apresentar a data atual.
     return (
         <header className={styles.headerContainer}>
             <img src="/logo.svg" alt="Podcastr" />

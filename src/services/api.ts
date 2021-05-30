@@ -1,4 +1,4 @@
-// Axios: biblioteca utilizada para requisicoes (=requests) http, cuida da API.
+// Axios: biblioteca utilizada para requisicoes (= requests) http, cuida da API.
 
 import axios from 'axios';
 
