@@ -63,7 +63,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
                 </div>
 
                 <button type="button" onClick={ () => playList(episodeList, index)}>
-                  <img src="/play-green.svg" alt="Tocar episódio"/> {/*botão play de 'últimos lançamnentos'*/}
+                  <img src="/play-green.svg" alt="Tocar episódio"/> {/*botão play de 'últimos lançamentos'*/}
                 </button>
               </li>
             )

@@ -1,17 +1,14 @@
-/* disabled: propriedade que permite com que o botão do display deixe de funcionar caso não esteja tocando
- * nenhum podcast.
- */
-
 import Image from 'next/image'; // extensão para modificar as propriedades da imagem
 import { useRef, useEffect, useState } from 'react';
-import { usePlayer } from '../../contexts/PlayerContext';
 
 import Slider from 'rc-slider'; //extensão para o slider (barra de tempo)
-import 'rc-slider/assets/index.css'; 
-import styles from './styles.module.scss';
-import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
+import 'rc-slider/assets/index.css'; // importacao do estilo do slider
 
-export  function Player(){
+import styles from './styles.module.scss'; //estilizacao
+import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'; // importação de função de outro arquivo do projeto
+import { usePlayer } from '../../contexts/PlayerContext'; // importação de função de outro arquivo do projeto
+
+export function Player(){
     const audioRef = useRef<HTMLAudioElement>(null);
     const [progress, setProgress] = useState(0);
 
@@ -29,11 +26,12 @@ export  function Player(){
         isShuffling, 
         clearPlayerState } = usePlayer();
         
+    // useEffect: adiciona efeitos colaterais caso algo ocorra.
     useEffect(() => {
         if(!audioRef.current){
             return;
         }
-        if(isPlaying){
+        if(isPlaying){ //
             audioRef.current.play();
         }else{
             audioRef.current.pause();
@@ -104,7 +102,7 @@ export  function Player(){
                     <span>{convertDurationToTimeString(episode?.duration ?? 0)}</span>
                 </div>
  
-                { episode && (
+                { episode && ( // tag que adiciona o audio nos podcasts
                     <audio
                     src = {episode.url}
                     ref = {audioRef}
@@ -118,7 +116,7 @@ export  function Player(){
                 ) 
                 }
 
-                 <div className = {styles.buttons}>
+                 <div className = {styles.buttons}> {/*botoes da sidebar - pagina inicial*/}
                     <button type = "button" disabled = {!episode || episodeList.length === 1}
                     onClick = {toggleShuffle} className = {isShuffling ? styles.isActive : ''}>
                         <img src = "/shuffle.svg" alt = "Embaralhar"/>

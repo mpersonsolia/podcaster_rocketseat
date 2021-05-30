@@ -1,16 +1,17 @@
 import format from 'date-fns/format' // extensão para data
 import ptBR from 'date-fns/locale/pt-BR' // extensão para data com localidade
 
-import styles from  "./styles.module.scss";
+import styles from  "./styles.module.scss"; // estilizacao
 
-export  function Header(){
+// Header: adiciona a data atual.
+export function Header(){
     const currentDate = format(new Date(), 'EEEE, d MMMM',{
         locale: ptBR,
     })
     return (
         <header className={styles.headerContainer}>
             <img src="/logo.svg" alt="Podcastr" />
-            <p>O melhor para você ouvir, sempre</p>
+            <p>O melhor para você ouvir, sempre!</p>
             <span>{currentDate}</span>
         </header>
     );
