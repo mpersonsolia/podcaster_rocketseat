@@ -1,20 +1,20 @@
-import { GetStaticPaths, GetStaticProps } from 'next'; // importacao das funcoes da biblioteca do next
+import { GetStaticPaths, GetStaticProps } from 'next'; // importação de funções do Next
 
-import Head from 'next/head'; // link para a tag head de outro arquivo
-import Link from 'next/link'; // permite que o link seja encaminhado para outro arquivo do próprio projeto
-import Image from 'next/image'; // permite adicionar propriedades em imagens salvas fora do projeto
+import Head from 'next/head'; // importação de funções do Next
+import Link from 'next/link'; // importação de funções do Next
+import Image from 'next/image'; // importação de funções do Next
 
-import { parseISO } from 'date-fns';  // extensao para datas, que forma uma string em data
+import { parseISO } from 'date-fns';  // extensão para data
 import { format } from 'date-fns'; // extensão para datas
-import { ptBR } from 'date-fns/locale'; // extensão para datas com localidade
+import { ptBR } from 'date-fns/locale'; // extensão para data com localidade brasileira
 
-import { api } from '../../services/api'; //importacao da funcao de outro arquivo do projeto
-import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'; //importacao da funcao de outro arquivo do projeto
-import styles from './episode.module.scss'; // estilizacao
+import { api } from '../../services/api'; // importação de função de outro arquivo do projeto
+import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'; // importação de função de outro arquivo do projeto
+import styles from './episode.module.scss'; // estilização específica
 
-import { PlayerContext, usePlayer } from '../../contexts/PlayerContext'; //importacao da funcao de outro arquivo do projeto
+import { PlayerContext, usePlayer } from '../../contexts/PlayerContext'; // importação de função de outro arquivo do projeto
 
-// tipagem feita com o TypeScript
+// tipagem 
 type Episode = {  
     id: string;
     title: string;
@@ -27,24 +27,24 @@ type Episode = {
     description: string;
 }
 
-// tipagem feita com o TypeScript
+// tipagem 
 type EpisodeProps = {
     episode: Episode
 };
 
-// fuction Episode: cuida da pagina dos episodios.
+// Episode: função 
 export default function Episode({episode}: EpisodeProps){
     const { play } = usePlayer()  
     
     return(
         <div className = {styles.episode}>
             <Head>
-            <title>{episode.title} | Podcastr</title> {/*titulo na guia*/}
+            <title>{episode.title} | Podcastr</title> {/*título na aba do brownser*/}
             </Head>
-            <div className = {styles.thumbnailContainer}> {/*imagem da pagina do podcast*/}
+            <div className = {styles.thumbnailContainer}> {/*estilo das páginas dos podcasts*/}
                 <Link href = "/">
                 <button type = "button">
-                    <img src = "/arrow-left.svg" alt="Voltar"/> {/*seta de voltar da pagina do podcast*/}
+                    <img src = "/arrow-left.svg" alt="Voltar"/> 
                 </button>
                 </Link>
                 
@@ -67,28 +67,20 @@ export default function Episode({episode}: EpisodeProps){
             </header>
             <div 
             className = {styles.description}
-            dangerouslySetInnerHTML = {{__html:episode.description}} // indica a periculosidade de adicionar um endereco html no codigo
+            dangerouslySetInnerHTML = {{__html:episode.description}} // tag para adicionar html ao código
             />              
         </div>        
     )
 }
 
-/* Get Static Paths: indica quais episódios serão gerados de forma estática no momento da build.
- *     - como o 'paths' está vazio, significa que nenhum episódio será gerado nesse momento.
- *
- * fallback: (incremental static regenaration) determina o comportamento da página que não foi gerada 
- * estaticamente.
- *     - false: retorna 404 e seria disponível apenas os episódios indicados no path.
- *     - true: tenta buscar o novo episódio, através do front-end, que não foi gerada de forma estática. 
- *     - blocking: a requisição de dados ocorre através do node js, o client só é enviado para a tela quando
- *       todos os dados já foram carregados.
- */
+// GetStaticPaths: indica quais episódios serão gerados de forma estática no momento da build.
+//     - como o 'paths' está vazio, significa que nenhum episódio será gerado nesse momento.
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const { data } = await api.get('episodes', {
         params: {
-            _limit: 2, // limite de dois podcasts na pagina.
-            _sort: 'published_at', // apresentado por ordem de publicacao
+            _limit: 2, // limite de dois podcasts em 'Últimos Lançamentos'
+            _sort: 'published_at', // apresentado por ordem de publicação
             _order: 'desc' // de forma decrescente
         }
     })
@@ -100,17 +92,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
         }
     })
 
+    /* fallback: determina o comportamento da página que não foi gerada estaticamente.
+    *     - false: retorna 404 e seria disponível apenas os episódios indicados no path.
+    *     - true: tenta buscar o novo episódio, através do front-end, que não foi gerada de forma estática. 
+    *     - blocking: a requisição de dados ocorre através do node js, o client só é enviado para a tela quando todos os dados já foram carregados.
+    */
     return{
         paths, //
-        fallback:'blocking' // requisição de dados ocorre através do node js, o client só é enviado para a tela quando todos os dados já foram carregados.
+        fallback:'blocking'
     }
 }
 
-/* SSG: a página dinâmica é gerada de forma estática quando usado o GetStaticProps
- * GetStaticProps: produz os dados da API durante a produção, de forma a permitir observar como o projeto atua fora do localhost
-     ctx:
- */
-
+// GetStaticProps: produz os dados da API durante a produção, de forma a permitir observar como o projeto atua fora do localhost.
+//   - ctx: 
 export const getStaticProps: GetStaticProps = async (ctx) => {
     const { slug } = ctx.params;
     const { data } = await api.get(`/episodes/${slug}`)
@@ -128,9 +122,9 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       }
 
     return {
-        props: { // props: objetos opcionais
+        props: { // props: objetos opcionais.
             episode
         },
-        revalidate: 60 * 60 * 24, // revalidate: propriedade do GetStaticProps - tempo em que a página estática será atualizada
+        revalidate: 60 * 60 * 24, // revalidate: propriedade do GetStaticProps - lapso temporal na qual a página será atualizada.
     }
 }

@@ -1,29 +1,21 @@
-/* _app: apresenta componentes compartilhados em todas as paginas. ex.: menu, barra de ferramentas.
- *      - permite manter o mesmo layout em todas as paginas e manter o seu estado durante a navegacao entre elas.
- */
-
+// _app: apresenta componentes compartilhados em todas as páginas, por isso permite manter o mesmo layout durante a navegação entre elas. ex.: menu, barra de ferramentas.
 import "../styles/global.scss" //estilo global scss
+import styles from '../styles/app.module.scss' //estilo scss específico
 
-import { Header } from "../components/Header" // importacao da funcao de outro arquivo do projeto
-import styles from '../styles/app.module.scss' //estilo scss
-import { Player } from "../components/Player" // importacao da funcao de outro arquivo do projeto
-import React, { useState } from "react"
+import React, { useState } from "react" // importação de hooks do React
+import { Player } from "../components/Player" // // importação de função de outro arquivo do projeto
+import { Header } from "../components/Header" // importação de função de outro arquivo do projeto
+import { PlayerContext, PlayerContextProvider } from "../contexts/PlayerContext" // importação de função de outro arquivo do projeto
 
-import { PlayerContext, PlayerContextProvider } from "../contexts/PlayerContext"
+// function MyApp: o arquivo _app substitui a utilização do componente app, por isso é necessário adicionar a função MyApp.
 
-/* function MyApp: o arquivo _app substitui a utilizacao do componente App.
- * Component: propriedade que ativa a 'page' e, ao navegar pelas rotas, o Component muda para a nova page. Por isso, tudo o que for enviado ao Component sera recebido pelas paginas.
- * pageProps: propriedade pre-carregada por data fetching (metodos de busca de dados).
- * 
- * Component e Headeder: sao compontes que devem ter acesso ao PlayerContext, adicionadas como variável por volta de ambos, através do PlayerContextProvider.
- */
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) { {/* Component: ativa os componentes presentes em todas páginas do projeto.*/}
 return (
   <PlayerContextProvider>
     <div className = {styles.wrapper}>    
       <main>
       <Header/>
-      <Component {...pageProps} />
+      <Component {...pageProps} /> {/* pageProps:*/}
       </main>
       <Player />
     </div>

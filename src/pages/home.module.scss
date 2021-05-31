@@ -1,26 +1,26 @@
 .homepage {
-    padding: 0 4rem; // distancia entre o conteúdo dos elementos e suas bordas
+    padding: 0 4rem; 
     height: calc(100vh - 6.5rem);
     overflow-y: scroll; // barra de rolagem no 'Últimos Episódios'
 
     h2 {
-        margin-top: 3rem; // margem acima de 'Todos os Episódios'
-        margin-bottom: 1.5rem; // margem abaixo de 'Todos os Episódios'
+        margin-top: 3rem; 
+        margin-bottom: 1.5rem;
     }
 }
 
-.latestEpisodes { // estilizaçao de 'Últimos Episódios'
+.latestEpisodes { // estilização de 'Últimos Episódios'
     ul {
     list-style: none;
-    display: grid; // colunas
-    grid-template-columns: repeat(2,1fr); // colunas
+    display: grid; 
+    grid-template-columns: repeat(2,1fr); 
     gap: 1.5rem; // espaçamento entre o grid dos 'Últimos Episódios'
 
     li {
-        background: rgba(255, 255, 255); // fundo de 'Últimos Episódios'
-        border: 1px solid rgba(230, 232, 235); // borda de 'Últimos Episódios'
-        padding: 1.25rem; // distancia entre o conteúdo dos elementos e suas bordas
-        border-radius: 1.5rem; // curvatura da borda
+        background: rgba(255, 255, 255); 
+        border: 1px solid rgba(230, 232, 235); 
+        padding: 1.25rem; 
+        border-radius: 1.5rem; 
         position: relative;
 
         display: flex;
@@ -58,7 +58,7 @@
                 text-overflow: ellipse;
             }
 
-            span {
+            span { // bolinha entre a data e a duração do podcast
                 display: inline-block;
                 margin-top: 0.5rem;
                 font-size: 0.875rem;
@@ -73,7 +73,7 @@
                         width: 4px;
                         height: 4px;
                         border-radius: 2px;
-                        background: var(--green-500);
+                        background: rgba(4, 211, 97);
                         position: absolute;
                         left: 0;
                         top: 50%;
@@ -108,10 +108,12 @@
 }
 }
 
-.allEpisodes {
+.allEpisodes {  // estilização de 'Todos os Episódios'
     padding-bottom: 2rem;
+
     table {
-    width: 100%;
+        width: 100%;
+    }
 
     th, td {
         padding: 0.75rem 1rem;
@@ -135,7 +137,7 @@
         }
 
         a {
-            color: var(--gray-800);
+            color: rgba(128,128,136);
             font-family: Lexend, sans-serif;
             font-weight: 600;
             text-decoration: none;
@@ -150,8 +152,8 @@
         button {         
             width: 2.5rem;
             height: 2.2rem;
-            background: var(--white);
-            border: 1px solid var(--gray-100);
+            background: rgba(255, 255, 255);
+            border: 1px solid rgba(241, 242, 243);
             border-radius: 0.5rem;
             font-size: 0;
 
@@ -165,5 +167,4 @@
             }
         }
     }
-}
 }
