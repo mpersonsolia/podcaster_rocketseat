@@ -1,7 +1,7 @@
-.playerContainer { // estilizaçao da sidebar
-    padding: 3rem 4rem; // distancia entre o conteudo dos elementos e suas bordas
-    width: 26.5rem; // largura
-    height: 100vh; //altura
+.playerContainer { // estilização da sidebar
+    padding: 3rem 4rem;
+    width: 26.5rem;
+    height: 100vh;
 
     background: rgba(130, 87, 229);
     color: rgba(255, 255, 255);
@@ -19,8 +19,8 @@
     }
 
     strong {
-        font-family: Lexend, sans-serif; // fonte
-        font-weight: 600; // tamanho da fonte
+        font-family: Lexend, sans-serif;
+        font-weight: 600;
     }
 
     footer {
@@ -31,7 +31,7 @@
     }
 }
 
-.currentEpisode {
+.currentEpisode { // estilização do episódio que estiver tocando.
     text-align: center;
     img {
         border-radius: 1.5rem;
@@ -52,23 +52,22 @@
     }
 }
 
-.emptyPlayer {
-    width: 100%; // largura
-    height: 20rem; // altura
+.emptyPlayer { // estilização da sidebar quando estiver vazia
+    width: 100%;
+    height: 20rem;
     border: 1.5px dashed rgba(144, 102, 242); // borda pontilhada
     border-radius: 1.5rem;
     background: linear-gradients(143.8deg, rgba(130, 87, 229)0%, rgba(0,0,0,0)100%);
 
-    padding: 4rem; // distancia entre o elemento e as bordas
+    padding: 4rem;
     text-align: center;
 
-    // alinhamento
     display: flex;
     align-items: center;
     justify-content:center;
 }
 
-.progress { // estilizaçao da barra de progresso
+.progress { // estilização da barra de progresso
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -80,10 +79,10 @@
         text-align: center;
     }
 
-    .slider{
+    .slider {
         flex: 1;
 
-        .emptySlider{ // estilizaçao da barra de progresso vazia
+        .emptySlider { // estilização da barra de progresso vazia
             width:100%;
             height: 4px;
             background: rgba(144, 102, 242);
@@ -92,7 +91,7 @@
     }     
 }
 
-.buttons { // estilizaçao dos botoes
+.buttons { // estilização dos botões
     display: flex;
     align-self: center;
     justify-content:center;
@@ -104,7 +103,7 @@
         border: 0;
         font-size: 0;
 
-        transition: filter 0.2s; // mudança de cor do botao ao descansar o mouse em cima
+        transition: filter 0.2s;
 
         &:disabled {
             cursor: default;
@@ -123,7 +122,7 @@
             filter: brightness(0.6) invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
         }
 
-        &.playButton{
+        &.playButton {
             width: 4rem;
             height: 4rem;
             border-radius: 1rem;
@@ -131,7 +130,7 @@
 
             transition: filter 0.2s;
 
-            &:hover:not(:disabled){
+            &:hover:not(:disabled) {
             filter: brightness(0.95)
             }    
         }

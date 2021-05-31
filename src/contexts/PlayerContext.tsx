@@ -1,5 +1,6 @@
-import { createContext, useState, ReactNode, useContext } from 'react';
+import { createContext, useState, ReactNode, useContext } from 'react'; // importação de hooks do React
 
+// tipagem
 type Episode = {
     title: string;
     members: string;
@@ -8,6 +9,7 @@ type Episode = {
     url: string;
 };
 
+// tipagem
 type PlayerContext = {
     episodeList: Episode[];
     currentEpisodeIndex: number;
@@ -26,10 +28,6 @@ type PlayerContext = {
     hasPrevious: boolean;
     clearPlayerState: () => void
 };
-
-/* passa-se um objeto vazio para o createContext com o objetivo de aplicar a ele a mesma tipagem dada ao 
-   PlayerContext acima, para facilitar a manipulação dos dados.
- */
 
 export const PlayerContext = createContext({} as PlayerContext);
 

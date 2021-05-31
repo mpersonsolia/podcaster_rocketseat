@@ -1,13 +1,16 @@
 import Image from 'next/image'; // extensão para modificar as propriedades da imagem
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react'; // importação de hooks do React
 
-import Slider from 'rc-slider'; //extensão para o slider (barra de tempo)
-import 'rc-slider/assets/index.css'; // importacao do estilo do slider
+import Slider from 'rc-slider'; // extensão para o slider 
+import 'rc-slider/assets/index.css'; // importação do estilo do slider
 
 import styles from './styles.module.scss'; //estilizacao
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'; // importação de função de outro arquivo do projeto
 import { usePlayer } from '../../contexts/PlayerContext'; // importação de função de outro arquivo do projeto
 
+// Player: função que controla o áudio da sidebar.
+// useRef:
+// useState: determina o valor inicial do slider.
 export function Player(){
     const audioRef = useRef<HTMLAudioElement>(null);
     const [progress, setProgress] = useState(0);
@@ -26,14 +29,13 @@ export function Player(){
         isShuffling, 
         clearPlayerState } = usePlayer();
         
-    // useEffect: adiciona efeitos colaterais caso algo ocorra.
+    // useEffect: adiciona efeitos colaterais caso algo ocorra, isto é, o hook diz ao Ract para executar a função de efeito após a liberação de mudanças.
     useEffect(() => {
         if(!audioRef.current){
             return;
-        }
-        if(isPlaying){ //
+        } if(isPlaying){ //
             audioRef.current.play();
-        }else{
+        } else {
             audioRef.current.pause();
         }
     }), [isPlaying]
@@ -59,17 +61,16 @@ export function Player(){
         }
     }
 
-    const episode = episodeList[currentEpisodeIndex]
-    
+    const episode = episodeList[currentEpisodeIndex]    
     return (
-        <div className = {styles.playerContainer}>
+        <div className = {styles.playerContainer}> {/*estilo da sidebar*/}
             <header>
-                <img src = "/playing.svg" alt = "Tocando agora"/>
-                <strong>Tocando agora {episode?.title}</strong>
+                <img src = "/playing.svg" alt = "Tocando Agora"/> {/*imagem do headphone*/}
+                <strong>Tocando Agora {episode?.title}</strong> {/*título da sidebar*/}
             </header>
 
             {episode ? (
-                <div className = {styles.currentEpisode}>
+                <div className = {styles.currentEpisode}> {/*características do espisódio enquanto estiver tocando na sidebar*/}
                   <Image 
                   width = {592} 
                   height = {592} 
@@ -78,23 +79,23 @@ export function Player(){
                   <strong>{episode.title}</strong>
                   <strong>{episode.members}</strong>
                    </div> 
-            ): (<div className = {styles.emptyPlayer}>
-                    <strong>Selecione um podcast para ouvir! </strong>
+                ): (<div className = {styles.emptyPlayer}>
+                    <strong>Selecione um podcast para ouvir!</strong>
                 </div>
                 )}
             
-            <footer className = {!episode ? styles.empty : ''}>
+            <footer className = {!episode ? styles.empty : ''}> {/*características da sidebar sem nenhum episódio tocando*/}
                 <div className = {styles.progress}>
                     <span>{convertDurationToTimeString(progress)}</span>
                     <div className = {styles.slider}>
-                    { episode ? (
+                    {episode ? (
                         <Slider
                         max = {episode.duration}
                         value = {progress} 
                         onChange = {handleSeek}
                         trackStyle = {{ backgroundColor:'#04D361'}}
                         railStyle = {{backgroundColor: '#9F75FF'}} 
-                        handleStyle = {{borderColor: '#04D361'}} />
+                        handleStyle = {{borderColor: '#04D361'}}/>
                     ) : (
                         <div className = {styles.emptySlider}/>
                     )}
@@ -102,7 +103,7 @@ export function Player(){
                     <span>{convertDurationToTimeString(episode?.duration ?? 0)}</span>
                 </div>
  
-                { episode && ( // tag que adiciona o audio nos podcasts
+                { episode && ( // <audio>: tag que adiciona o áudio ao projeto.
                     <audio
                     src = {episode.url}
                     ref = {audioRef}
@@ -115,12 +116,13 @@ export function Player(){
                     />         
                     ) 
                 }
-
-                 <div className = {styles.buttons}> {/*botoes da sidebar - pagina inicial*/}
-                    <button type = "button" disabled = {!episode || episodeList.length === 1}
+                
+                 <div className = {styles.buttons}> {/*botões da sidebar*/}
+                    <button type = "button" disabled = {!episode || episodeList.length === 1} 
                     onClick = {toggleShuffle} className = {isShuffling ? styles.isActive : ''}>
                         <img src = "/shuffle.svg" alt = "Embaralhar"/>
                     </button>
+                    {/*disabled: mantém os botões desativados quando não há podcast tocando.*/}
 
                     <button type = "button" onClick = {playPrevious} disabled = {!episode || !hasPrevious}>
                         <img src = "/play-previous.svg" alt = "Tocar Anterior"/>
