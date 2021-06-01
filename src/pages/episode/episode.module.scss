@@ -24,14 +24,14 @@
             &:first-child {
                 left: 0;
                 top:50%;
-                background: rgba(130, 87, 229);;
+                background: #6F48C9;
                 transform: translate(50%, -50%);
             }
 
             &:last-child {
                 right: 0;
                 top: 50%;
-                background:  rgba(4, 211, 97);
+                background: #04D361;
                 transform: translate(-50%, -50%);
             }
 
@@ -43,7 +43,7 @@
 
     header {
         padding-bottom: 1rem;
-        border-bottom: 1px solid var(--gray-100);        
+        border-bottom: 1px solid #E6E8EB;        
 
         h1 {
             margin-top: 2rem;
@@ -64,7 +64,7 @@
                     width: 4px;
                     height: 4px;
                     border-radius: 2px;
-                    background: rgba(4, 211, 97);
+                    background: #04D361;
                     position: absolute;
                     left:0;
                     top:50%;
@@ -77,7 +77,7 @@
     .description {
         margin-top: 2rem;
         line-height: 1.675rem;
-        color: rgba(128, 128, 136);
+        color: #AFB2B1;
         
         p {
             margin: 1.5rem 0;

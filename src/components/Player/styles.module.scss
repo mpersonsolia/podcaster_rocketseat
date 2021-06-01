@@ -3,8 +3,8 @@
     width: 26.5rem;
     height: 100vh;
 
-    background: rgba(130, 87, 229);
-    color: rgba(255, 255, 255);
+    background:  #6F48C9;
+    color: #FFF;
  
     // alinhamento
     display: flex;
@@ -55,9 +55,9 @@
 .emptyPlayer { // estilização da sidebar quando estiver vazia
     width: 100%;
     height: 20rem;
-    border: 1.5px dashed rgba(144, 102, 242); // borda pontilhada
+    border: 1.5px dashed #6F48C9; // borda pontilhada
     border-radius: 1.5rem;
-    background: linear-gradients(143.8deg, rgba(130, 87, 229)0%, rgba(0,0,0,0)100%);
+    background: linear-gradients(143.8deg, (#6F48C9)0%, rgba(0,0,0,0)100%);
 
     padding: 4rem;
     text-align: center;
@@ -85,7 +85,7 @@
         .emptySlider { // estilização da barra de progresso vazia
             width:100%;
             height: 4px;
-            background: rgba(144, 102, 242);
+            background: #6F48C9;
             border-radius: 2px;
         }
     }     
@@ -126,7 +126,7 @@
             width: 4rem;
             height: 4rem;
             border-radius: 1rem;
-            background: rgba(137, 93, 239);
+            background: #6F48C9;
 
             transition: filter 0.2s;
 

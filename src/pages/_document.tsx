@@ -1,6 +1,6 @@
 // <Html>, <Head>, <Main>, <Nextscript>: tags para renderização da página.
 
-import Document, { Html, Head, Main, NextScript } from 'next/document'; // importação de hooks do React, que permitem aumentar as aplicações <html> e <body>
+import Document, { Html, Head, Main, NextScript } from 'next/document'; // importação de hooks do React, que permitem aumentar as aplicações de <html> e <body>
 
 export default class MyDocument extends Document {
     render(){

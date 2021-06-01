@@ -42,7 +42,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
         <h2> Últimos Lançamentos</h2>
         <ul>
           
-          {latestEpisodes.map((episode, index) => { {/*map: permite percorrer os parâmetros adicionados na tipagem indicada'.*/}
+          {latestEpisodes.map((episode, index) => { {/*map: permite percorrer os parâmetros adicionados na tipagem indicada.*/}
             return (
               <li key = {episode.id}> {/*key: utiliza informação singular da propriedade para evitar tags duplicadas.*/} 
                 <Image 
@@ -137,7 +137,7 @@ export const getStaticProps: GetStaticProps = async () => {
       title: episode.title,
       thumbnail: episode.thumbnail,
       members: episode.members,
-      publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { locale: ptBR }), // extensao do date-fns
+      publishedAt: format(parseISO(episode.published_at), 'd MMM yy', { locale: ptBR }), // extensão do date-fns
       duration:Number(episode.file.duration),
       durationAsString: convertDurationToTimeString(Number(episode.file.duration)),
       url: episode.file.url,
@@ -152,6 +152,6 @@ export const getStaticProps: GetStaticProps = async () => {
       latestEpisodes,
       allEpisodes,
      },
-     revalidate: 60 * 60 * 8 // revalidate: propriedade do GetStaticProps - tempo em que a página estática será atualizada
+     revalidate: 60 * 60 * 8 // revalidate: propriedade do GetStaticProps - tempo em que a página estática será atualizada.
    }
   }

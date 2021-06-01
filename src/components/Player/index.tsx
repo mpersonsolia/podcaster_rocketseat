@@ -15,7 +15,7 @@ export function Player(){
     const audioRef = useRef<HTMLAudioElement>(null);
     const [progress, setProgress] = useState(0);
 
-    const {
+    const{
         episodeList, 
         currentEpisodeIndex, 
         isPlaying, togglePlay, 

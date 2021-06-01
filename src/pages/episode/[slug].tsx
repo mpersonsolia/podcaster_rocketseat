@@ -32,7 +32,7 @@ type EpisodeProps = {
     episode: Episode
 };
 
-// Episode: função 
+// Episode: 
 export default function Episode({episode}: EpisodeProps){
     const { play } = usePlayer()  
     
@@ -98,7 +98,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     *     - blocking: a requisição de dados ocorre através do node js, o client só é enviado para a tela quando todos os dados já foram carregados.
     */
     return{
-        paths, //
+        paths, 
         fallback:'blocking'
     }
 }

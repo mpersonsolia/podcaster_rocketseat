@@ -1,8 +1,8 @@
-// Essa estilização cuida apenas da tag header, que é o cabeçalho da página.
+// Essa estilização cuida apenas da tag header, que é o cabeçalho da página
 
 .headerContainer {
-    background: rgba(255, 255, 255); // cor de fundo
-    height: 6.5rem; // altura - 1rem = 16px
+    background: #FFF; // cor de fundo
+    height: 6.5rem; // altura -> 1rem = 16px
 
     // alinhamento
     display: flex;
@@ -10,7 +10,7 @@
 
     // distância entre o conteúdo as bordas
     padding: 2rem 4rem;
-    border-bottom: 1px solid rgba(145,100,250,0.8); // linha entre o cabeçalho e o corpo
+    border-bottom: 1px solid #6F48C9; // linha entre o cabeçalho e o corpo
 
     // parágrafo
     p {
@@ -22,6 +22,6 @@
     // espaçamento entre a frase e a data
     span {
         margin-left: auto;
-        text-transform: capitalize; // todas as primeiras letras serão maiúsculas
+        text-transform: capitalize; // todas as letras iniciais serão maiúsculas
     }
 }

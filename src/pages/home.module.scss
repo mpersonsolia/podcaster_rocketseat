@@ -17,8 +17,8 @@
     gap: 1.5rem; // espaçamento entre o grid dos 'Últimos Episódios'
 
     li {
-        background: rgba(255, 255, 255); 
-        border: 1px solid rgba(230, 232, 235); 
+        background: #FFF; 
+        border: 1px solid #E6E8EB; 
         padding: 1.25rem; 
         border-radius: 1.5rem; 
         position: relative;
@@ -36,9 +36,9 @@
             flex: 1;
             margin-left: 1rem;
 
-            a { // estilizaçao do texto de 'Últimos Episódios'
+            a { // estilização do texto de 'Últimos Episódios'
                 display: block;
-                color: rgba(132, 146, 167); 
+                color: #AFB2B1; 
                 font-family: Lexend, sans-serif;
                 font-weight: 600;
                 text-decoration: none;
@@ -73,7 +73,7 @@
                         width: 4px;
                         height: 4px;
                         border-radius: 2px;
-                        background: rgba(4, 211, 97);
+                        background: #04D261;
                         position: absolute;
                         left: 0;
                         top: 50%;
@@ -90,8 +90,8 @@
 
             width: 2.5rem;
             height: 2.5rem;
-            background: rgba(255, 255, 255);
-            border: 1px solid rgba(230, 232, 235);;
+            background: #FFF;
+            border: 1px solid #E6E8EB;
             border-radius: 0.5rem;
             font-size: 0;
 
@@ -117,7 +117,7 @@
 
     th, td {
         padding: 0.75rem 1rem;
-        border-bottom:  1px solid var(--gray-100);    
+        border-bottom:  1px solid #E6E8EB;   
     }
 
     th {
@@ -137,7 +137,7 @@
         }
 
         a {
-            color: rgba(128,128,136);
+            color: #AFB2B1;
             font-family: Lexend, sans-serif;
             font-weight: 600;
             text-decoration: none;
@@ -152,8 +152,8 @@
         button {         
             width: 2.5rem;
             height: 2.2rem;
-            background: rgba(255, 255, 255);
-            border: 1px solid rgba(241, 242, 243);
+            background: #FFF;
+            border: 1px solid #E6E8EB;
             border-radius: 0.5rem;
             font-size: 0;
 
