@@ -74,7 +74,7 @@ export default function Episode({episode}: EpisodeProps){
 }
 
 // GetStaticPaths: indica quais episódios serão gerados de forma estática no momento da build.
-//     - como o 'paths' está vazio, significa que nenhum episódio será gerado nesse momento.
+//   - como o 'paths' está vazio, significa que nenhum episódio será gerado nesse momento.
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const { data } = await api.get('episodes', {

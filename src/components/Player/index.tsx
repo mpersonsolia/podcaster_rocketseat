@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from 'react'; // importação de hooks do
 import Slider from 'rc-slider'; // extensão para o slider 
 import 'rc-slider/assets/index.css'; // importação do estilo do slider
 
-import styles from './styles.module.scss'; //estilizacao
+import styles from './styles.module.scss'; // estilização
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString'; // importação de função de outro arquivo do projeto
 import { usePlayer } from '../../contexts/PlayerContext'; // importação de função de outro arquivo do projeto
 
@@ -15,7 +15,8 @@ export function Player(){
     const audioRef = useRef<HTMLAudioElement>(null);
     const [progress, setProgress] = useState(0);
 
-    const {episodeList, 
+    const {
+        episodeList, 
         currentEpisodeIndex, 
         isPlaying, togglePlay, 
         setPlayingState, 
@@ -33,7 +34,7 @@ export function Player(){
     useEffect(() => {
         if(!audioRef.current){
             return;
-        } if(isPlaying){ //
+        } if(isPlaying){ 
             audioRef.current.play();
         } else {
             audioRef.current.pause();
